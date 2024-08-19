@@ -1,0 +1,38 @@
+@model IEnumerable<crudaspnetcore.Models.User>
+
+@{
+ViewData["Title"] = "List";
+}
+
+<div class="container mt-4">
+    <h2> List</h2>
+
+    <p>
+        <a class="btn btn-primary" href="@Url.Action("Create")">Criar novo</a>
+    </p>
+
+    <table class="table table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var user in Model)
+        {
+        <tr>
+            <td>@user.id</td>
+            <td>@user.name</td>
+            <td>@user.email</td>
+            <td>
+                <a class="btn btn-warning btn-sm" href="@Url.Action("Edit", new { id = user.id })">Editar</a>
+                <a class="btn btn-danger btn-sm" href="@Url.Action("Delete", new { id = user.id })" onclick="return confirm('Tem certeza que deseja excluir?');">Excluir</a>
+            </td>
+        </tr>
+        }
+        </tbody>
+    </table>
+</div>
